@@ -51,6 +51,9 @@ public class SendMessagePage {
 
     @FindBy(xpath = "(//button[.='Cancel'])[3]")
     public WebElement cancelButton;
+
+    @FindBy(css= "div[class='feed-post-text-block-inner-inner']")
+    public WebElement text;
 }
 
 

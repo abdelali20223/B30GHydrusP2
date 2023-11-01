@@ -2,6 +2,7 @@ package com.crm_app.step_definitions;
 
 import com.crm_app.pages.SendMessagePage;
 import com.crm_app.utilities.BrowserUtils;
+import com.crm_app.utilities.ConfigurationReader;
 import com.crm_app.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,10 +22,9 @@ public class Us84_SendMessage_defs {
 
     SendMessagePage messagePage = new SendMessagePage();
 
-    @Given("User navigate to {string}")
-    public void user_navigate_to(String url) {
-        Driver.getDriver().get(url);
-
+    @Given("User navigate to homePage")
+    public void user_navigate_to_home_page() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
     @When("User enter valid username {string} on the username box")
@@ -60,11 +60,16 @@ public class Us84_SendMessage_defs {
         Driver.getDriver().switchTo().parentFrame();
     }
 
-    @Then("User  click send, user should be able to send message successfuly")
-    public void user_click_send_user_should_be_able_to_send_message_successfuly() {
-
+    @Then("User  click send, user should be able to send {string} successfuly")
+    public void user_click_send_user_should_be_able_to_send_successfuly(String expectedTextMessage) {
         messagePage.sendButton.click();
+
+        String actualTextMessage = messagePage.text.getText();
+       // BrowserUtils.sleep(8);
+        wait.until(ExpectedConditions.visibilityOf(messagePage.text));
+        Assert.assertEquals(expectedTextMessage, actualTextMessage);
     }
+
 
     @Then("User click send")
     public void user_click_send() {
@@ -88,12 +93,12 @@ public class Us84_SendMessage_defs {
     @Then("User Should see please specify msg {string} error message")
     public void user_should_see_please_specify_msg_error_message(String expectSpecifyAtLeastOnePersonError) {
         String actualSpecifyAtLeastTextError = messagePage.pleaseSpecifyErrorMessage.getText();
-Assert.assertEquals("Verify please sprcify text Error FAILED!!!", expectSpecifyAtLeastOnePersonError,actualSpecifyAtLeastTextError );
+        Assert.assertEquals("Verify please sprcify text Error FAILED!!!", expectSpecifyAtLeastOnePersonError, actualSpecifyAtLeastTextError);
     }
 
     @Then("The user should see {string} by default")
     public void the_user_should_see_by_default(String expectAllEmployeesText) {
-       wait.until(ExpectedConditions.visibilityOf(messagePage.allEmployeesText));
+        wait.until(ExpectedConditions.visibilityOf(messagePage.allEmployeesText));
         String actualAllEmployeesText = messagePage.allEmployeesText.getText();
         Assert.assertEquals("Verify all the employees text FAILED!!", expectAllEmployeesText, actualAllEmployeesText);
 
@@ -102,13 +107,13 @@ Assert.assertEquals("Verify please sprcify text Error FAILED!!!", expectSpecifyA
     @When("User start typing {string} on the mandatory field")
     public void user_start_typing_on_the_mandatory_field(String randomText) {
         Driver.getDriver().switchTo().frame(messagePage.messageIframe);
-       messagePage.messagePostTextBox.sendKeys(randomText);
-       Driver.getDriver().switchTo().parentFrame();
+        messagePage.messagePostTextBox.sendKeys(randomText);
+        Driver.getDriver().switchTo().parentFrame();
     }
 
     @Then("User click cancel button, should be able to cancel")
     public void user_click_cancel_button_should_be_able_to_cancel() {
         messagePage.cancelButton.click();
-        BrowserUtils.sleep(2);
+
     }
 }

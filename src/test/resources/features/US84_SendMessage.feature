@@ -4,8 +4,8 @@ Feature: User should be able to send a message
 
   Background:
 		# @B30G21-98
-    Given User navigate to "https://qa.azulcrm.com/"
-    When User enter valid username "hr15@cybertekschool.com" on the username box
+    Given User navigate to homePage
+    When User enter valid username "hr15@cydeo.com" on the username box
     And User enter valid password "UserUser" on the password box
     Then User click login button, and login successfully
     And  User click on message button
@@ -14,12 +14,12 @@ Feature: User should be able to send a message
   @B30G21-95
   Scenario Outline:  User should be able to send a message by filling in the mandatory fields.      Mandatory fields:  'Message content & 'Recipient'.
     And user type "<messages>" in the mandatory fields
-    Then User  click send, user should be able to send message successfuly
+    Then User  click send, user should be able to send "<messages>" successfuly
     Examples:
-      | messages     |
-      | Hello world  |
-      | Hello bach30 |
-      | Hello Hyders |
+      | messages    |
+      | Hello world |
+      | Hello aziz      |
+      | world ali      |
 
   @B30G21-96
   Scenario: The error message "The message title is not specified"
