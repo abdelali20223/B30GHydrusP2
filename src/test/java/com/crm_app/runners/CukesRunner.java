@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/crm_app/step_definitions",
         dryRun = true,
-        tags = "",
+        tags = "@fd",
         publish = true
 )
 public class CukesRunner {}
