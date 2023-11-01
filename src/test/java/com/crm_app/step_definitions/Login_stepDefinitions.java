@@ -2,14 +2,24 @@ package com.crm_app.step_definitions;
 
 import com.crm_app.pages.LoginPage;
 import com.crm_app.utilities.BrowserUtils;
+import com.crm_app.utilities.ConfigurationReader;
+import com.crm_app.utilities.Driver;
 import io.cucumber.java.en.And;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class Login_stepDefinitions {
     LoginPage loginPage=new LoginPage();
+
+
+    @Given("user is on the login page")
+    public void userIsOnTheLoginPage() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+    }
+
     @When("the user enters {string},{string}")
     public void the_user_enters(String username, String password ) {
         loginPage.login(username,password);
@@ -20,7 +30,6 @@ public class Login_stepDefinitions {
 
         BrowserUtils.verifyTitleContains(expectedINTitle);
     }
-
 
     @When("user enters invalid username and invalid password")
     public void userEntersInvalidUsernameAndInvalidPassword() {
@@ -69,10 +78,8 @@ public class Login_stepDefinitions {
     @Then("user should see that the password is in bullet sign by default")
     public void userShouldSeeThatThePasswordIsInBulletSignByDefault() {
 
-
-
-
     }
+
 
 
 }

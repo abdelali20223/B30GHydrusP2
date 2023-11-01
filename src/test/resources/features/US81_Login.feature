@@ -1,6 +1,8 @@
 Feature: B30G21 US81 As a user, I should be able to login
-  Background: user is on the login page
+  @wip
+
   Scenario Outline:  AC01 user should be able to log in with valid credentials
+    Given user is on the login page
     When the user enters "<username>","<password>"
     Then the user should be able to log in successfully to crm homepage
 
@@ -9,13 +11,13 @@ Feature: B30G21 US81 As a user, I should be able to login
       | hr1@cydeo.com   | UserUser      |
       |helpdesk1@cydeo.com|    UserUser |
       | marketing1@cydeo.com| UserUser|
-
+  @wip
   Scenario: : AC02 user should see Incorrect login or password text when entering invalid credentials
     When user enters invalid username and invalid password
     And user click on login button
     Then user should see Incorrect login or password text
 
-
+  @wip
   Scenario Outline: :AC04 user should see Remember ME link and is clickable on login page
     When user enters "<username>","<password>"
     Then user should see Remember Me link on the page
