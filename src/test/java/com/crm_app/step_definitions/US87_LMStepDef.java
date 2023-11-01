@@ -2,13 +2,14 @@ package com.crm_app.step_definitions;
 
 import com.crm_app.pages.US87_LMPage;
 import com.crm_app.utilities.BrowserUtils;
+import com.crm_app.utilities.ConfigurationReader;
 import com.crm_app.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class US87_LMStepDef {
-
 
 
     US87_LMPage us87LmPage = new US87_LMPage();
@@ -16,28 +17,24 @@ public class US87_LMStepDef {
     @Given("user is on the CRM login page")
     public void user_is_on_the_crm_login_page() {
 
-        Driver.getDriver().get("https://login1.nextbasecrm.com/");
-
-        //Driver.getDriver(ConfigurationReader.getProperty("crm_url"));
-
+          Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
     @When("user enters Username and Password to login")
     public void user_enters_username_and_password_to_login() {
-        us87LmPage.username.sendKeys("hr1@cydeo.com");
-        us87LmPage.password.sendKeys("UserUser");
-        us87LmPage.loginButton.click();
 
+        us87LmPage.username.sendKeys(ConfigurationReader.getProperty("username"));
+        us87LmPage.password.sendKeys(ConfigurationReader.getProperty("password"));
+        us87LmPage.loginButton.click();
     }
     @When("user clicks the Employees Tab")
     public void user_clicks_the_employees_tab() {
 
         us87LmPage.employeesTab.click();
-        BrowserUtils.sleep(5);
+        BrowserUtils.sleep(10);
     }
     @Then("user should see Company Structure on the employees page")
     public void user_should_see_company_structure_on_the_employees_page() {
         us87LmPage.companyStructure.getText();
-
     }
     @Then("user should see Find Employee on the employees page")
     public void user_should_see_find_employee_on_the_employees_page() {
@@ -68,12 +65,12 @@ public class US87_LMStepDef {
         us87LmPage.newPage.getText();
     }
 
-    @Then("user should view the Company Structure by default")
-    public void user_should_view_the_company_structure_by_default() {
+    @Then("user should view the Company Structure by default after clicking the Employees Module")
+    public void userShouldViewTheCompanyStructureByDefaultAfterClickingTheEmployeesModule() {
         us87LmPage.expectedTitle.getText();
-
-
+        String actualTitle = Driver.getDriver().getTitle();
+        String expectedTitle="Company Structure";
+        Assert.assertTrue(actualTitle.contains(expectedTitle));
     }
-
 
 }

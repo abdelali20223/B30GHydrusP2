@@ -21,7 +21,7 @@ Feature: CRM Employee Page
     Given user is on the CRM login page
     When user enters Username and Password to login
     And user clicks the Employees Tab
-    Then user should view the Company Structure by default
+    Then user should view the Company Structure by default after clicking the Employees Module
 
 
 
