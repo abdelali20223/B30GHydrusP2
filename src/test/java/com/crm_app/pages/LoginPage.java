@@ -9,7 +9,6 @@ public class LoginPage {
     public LoginPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
     @FindBy(xpath = "//input[@type='text']")
     public WebElement userInputBox;
 

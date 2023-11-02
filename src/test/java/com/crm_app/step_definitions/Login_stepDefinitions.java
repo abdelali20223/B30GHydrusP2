@@ -52,7 +52,6 @@ public class Login_stepDefinitions {
         loginPage.passwordInputBox.sendKeys(password);
 
     }
-
     @Then("user should see Remember Me link on the page")
     public void userShouldSeeRememberMeLinkOnThePage() {
         Assert.assertTrue(loginPage.checkBoxRememberME.isDisplayed());
