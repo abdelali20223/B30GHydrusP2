@@ -14,7 +14,6 @@ import org.junit.Assert;
 public class Login_stepDefinitions {
     LoginPage loginPage=new LoginPage();
 
-
     @Given("user is on the login page")
     public void userIsOnTheLoginPage() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
@@ -24,13 +23,12 @@ public class Login_stepDefinitions {
     public void the_user_enters(String username, String password ) {
         loginPage.login(username,password);
     }
+
     @Then("the user should be able to log in successfully to crm homepage")
     public void the_user_should_be_able_to_log_in_successfully_to_crm_homepage() {
         String expectedINTitle="Portal";
-
         BrowserUtils.verifyTitleContains(expectedINTitle);
     }
-
     @When("user enters invalid username and invalid password")
     public void userEntersInvalidUsernameAndInvalidPassword() {
         loginPage.login("incorrectUsername","incorrectPassword");
@@ -46,40 +44,20 @@ public class Login_stepDefinitions {
         Assert.assertEquals(expectedText,actualText);
 
 
-    }
-
-    @When("user clicks on login button without entering username or password")
-    public void userClicksOnLoginButtonWithoutEnteringUsernameOrPassword() {
-        loginPage.userInputBox.clear();
-        loginPage.passwordInputBox.clear();
-        loginPage.logInButton.click();
-
-    }
-
-    @When("user enters {string},{string}")
+    }@When("user enters {string},{string}")
     public void userEnters(String username, String password) {
         loginPage.userInputBox.sendKeys(username);
         loginPage.passwordInputBox.sendKeys(password);
 
     }
-
     @Then("user should see Remember Me link on the page")
     public void userShouldSeeRememberMeLinkOnThePage() {
-
         Assert.assertTrue(loginPage.checkBoxRememberME.isDisplayed());
     }
-
     @And("user Remember Me link should be clickable")
     public void userRememberMeLinkShouldBeClickable() {
-
         Assert.assertTrue(loginPage.checkBoxRememberME.isEnabled());
     }
-
-    @Then("user should see that the password is in bullet sign by default")
-    public void userShouldSeeThatThePasswordIsInBulletSignByDefault() {
-
-    }
-
 
 
 }
