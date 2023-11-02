@@ -1,4 +1,4 @@
-Feature: CRM Employee Page
+Feature: Activity Stream Page
   Agile Story: User should be able to see all options on the Activity Stream Page
 
   @B30G21-123
