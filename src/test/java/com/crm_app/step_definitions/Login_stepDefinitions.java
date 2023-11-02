@@ -27,7 +27,6 @@ public class Login_stepDefinitions {
     @Then("the user should be able to log in successfully to crm homepage")
     public void the_user_should_be_able_to_log_in_successfully_to_crm_homepage() {
         String expectedINTitle="Portal";
-
         BrowserUtils.verifyTitleContains(expectedINTitle);
     }
 
@@ -47,15 +46,6 @@ public class Login_stepDefinitions {
 
 
     }
-
-    @When("user clicks on login button without entering username or password")
-    public void userClicksOnLoginButtonWithoutEnteringUsernameOrPassword() {
-        loginPage.userInputBox.clear();
-        loginPage.passwordInputBox.clear();
-        loginPage.logInButton.click();
-
-    }
-
     @When("user enters {string},{string}")
     public void userEnters(String username, String password) {
         loginPage.userInputBox.sendKeys(username);
@@ -65,21 +55,13 @@ public class Login_stepDefinitions {
 
     @Then("user should see Remember Me link on the page")
     public void userShouldSeeRememberMeLinkOnThePage() {
-
         Assert.assertTrue(loginPage.checkBoxRememberME.isDisplayed());
     }
 
     @And("user Remember Me link should be clickable")
     public void userRememberMeLinkShouldBeClickable() {
-
         Assert.assertTrue(loginPage.checkBoxRememberME.isEnabled());
     }
-
-    @Then("user should see that the password is in bullet sign by default")
-    public void userShouldSeeThatThePasswordIsInBulletSignByDefault() {
-
-    }
-
 
 
 }

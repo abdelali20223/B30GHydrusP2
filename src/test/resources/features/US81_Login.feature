@@ -27,12 +27,4 @@ Feature: B30G21 US81 As a user, I should be able to login
       | hr1@cydeo.com   | UserUser      |
       |helpdesk1@cydeo.com|    UserUser |
       | marketing1@cydeo.com| UserUser|
-  Scenario Outline:AC05 user should see password in bullet sign by default
-    When user enters "<username>","<password>"
-    Then user should see that the password is in bullet sign by default
-    Examples:
-      | username        | password      |
-      | hr1@cydeo.com   | UserUser      |
-      |helpdesk1@cydeo.com|    UserUser |
-      | marketing1@cydeo.com| UserUser|
 
