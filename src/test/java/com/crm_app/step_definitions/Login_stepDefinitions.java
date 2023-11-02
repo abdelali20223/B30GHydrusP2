@@ -56,7 +56,6 @@ public class Login_stepDefinitions {
     public void userShouldSeeRememberMeLinkOnThePage() {
         Assert.assertTrue(loginPage.checkBoxRememberME.isDisplayed());
     }
-
     @And("user Remember Me link should be clickable")
     public void userRememberMeLinkShouldBeClickable() {
         Assert.assertTrue(loginPage.checkBoxRememberME.isEnabled());
