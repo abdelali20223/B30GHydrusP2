@@ -7,6 +7,7 @@ import com.crm_app.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -56,8 +57,8 @@ public class UploadFile_stepDef {
     @When("user should be able to  upload files.")
     public void user_should_be_able_to_upload_files() {
         //Driver.getDriver().switchTo().frame(Driver.getDriver().findElement(By.className("bx-editor-iframe")));
-        wait.until(ExpectedConditions.elementToBeClickable(uploadFilePage.UploadFilesAndImagesBtn));
-        BrowserUtils.sleep(2);
+//        wait.until(ExpectedConditions.elementToBeClickable(uploadFilePage.UploadFilesAndImagesBtn));
+//
         uploadFilePage.UploadFilesAndImagesBtn.sendKeys("C:\\Users\\abdel\\OneDrive\\Desktop\\dfff.txt");
         //BrowserUtils.sleep(10);
         //Driver.getDriver().switchTo().parentFrame();
@@ -82,11 +83,15 @@ public class UploadFile_stepDef {
     }
     @Then("user should be able to see the file in text area")
     public void user_should_be_able_to_see_the_file_in_text_area() {
+        Driver.getDriver().switchTo().frame(uploadFilePage.messageIframe);
         Assert.assertTrue(uploadFilePage.textarea.isDisplayed());
+        Driver.getDriver().switchTo().defaultContent();
     }
     @Then("user should be able to remove files and images by clicking 'X'button before sending")
     public void user_should_be_able_to_remove_files_and_images_by_clicking_x_button_before_sending() {
         uploadFilePage.removeFiles.click();
-        Assert.assertFalse(uploadFilePage.textarea.isDisplayed());
+
+        Assert.assertEquals(uploadFilePage.messageIframe.getText(),"");
+        Driver.getDriver().switchTo().defaultContent();
     }
 }

@@ -18,7 +18,7 @@ public class UploadFilePage {
 
     @FindBy(id = "bx-b-uploadfile-blogPostForm")
     public WebElement UploadFilesBtn;
-    @FindBy(xpath = "(//span[@class='wd-fa-add-file-light-title'])[1]")
+    @FindBy(xpath = "(//input[@class='diskuf-fileUploader wd-test-file-light-inp '])[1]")
     public WebElement UploadFilesAndImagesBtn;
     @FindBy(xpath = "//span[@class='insert-btn']")
     public WebElement insertInTxtBtn;
@@ -26,8 +26,9 @@ public class UploadFilePage {
     public WebElement attachedFiles;
     @FindBy(xpath = "//span[@class='del-but']")
     public WebElement removeFiles;
-    @FindBy(xpath = "//span[contains(@id,'bxid')]")
+    @FindBy(xpath = "//span[@style='color: #2067B0; border-bottom: 1px dashed #2067B0; margin:0 2px;']")
     public WebElement textarea;
-
+    @FindBy(css = ".bx-editor-iframe")
+    public WebElement messageIframe;
 
 }
