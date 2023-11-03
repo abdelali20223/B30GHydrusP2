@@ -21,12 +21,12 @@ for ALL the SCENARIOS and even STEPS.
 public class Hooks {
 
     //import the @Before coming from io.cucumber.java
-    @Before (order = 1)
+  //  @Before (order = 1)
     public void setupMethod(){
 
        // Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+      //  Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
     //@Before (value = "@login", order = 2 )
@@ -64,5 +64,7 @@ public class Hooks {
         System.out.println("-----> @AfterSTEP : Running after each step!");
     }
 
+
+    String login = "";
 
 }
