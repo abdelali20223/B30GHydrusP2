@@ -17,9 +17,11 @@ import org.junit.runner.RunWith;
         glue = "com/crm_app/step_definitions",
         dryRun = false,
 
+
         
 
         tags = " @B30G21-110 ",
+
 
         publish = true
 )
