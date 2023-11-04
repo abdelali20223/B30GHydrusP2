@@ -15,43 +15,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class US125_StepDefinitions {
-    LoginPage loginPage=new LoginPage();
-    ProfilePage profilePage=new ProfilePage();
+    LoginPage loginPage = new LoginPage();
+    ProfilePage profilePage = new ProfilePage();
 
 
     @Given("user is already logged on to the crm portal")
     public void user_is_already_logged_on_to_the_crm_portal() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-        loginPage.login(ConfigurationReader.getProperty("username_hr"),ConfigurationReader.getProperty("password"));
+        loginPage.login(ConfigurationReader.getProperty("username_hr"), ConfigurationReader.getProperty("password"));
     }
+
     @When("user clicks on his username on the right hand corner")
     public void user_clicks_on_his_username_on_the_right_hand_corner() {
         profilePage.username.click();
     }
+
     @Then("user clicks on the my profile")
     public void user_clicks_on_the_my_profile() {
         profilePage.myProfile.click();
 
     }
+
     @Then("user should see the following modules")
-    public void user_should_see_the_following_modules(List<String>expectedModules) {
+    public void user_should_see_the_following_modules(List<String> expectedModules) {
 
-        List<String> actualModules=new ArrayList<>();
+        String expectModule1 = "";
+        String actualModules1 = "";
 
-        for (WebElement module : profilePage.modules) {
-            actualModules.add(module.getText().replace(" ",","));
-
+        for (String expectedModule : expectedModules) {
+            expectModule1 += expectedModule;
         }
 
-        Assert.assertEquals(expectedModules, actualModules);
+        //   List<String> actualModules=new ArrayList<>();
+        for (WebElement module : profilePage.modules) {
+            actualModules1 += module.getText().replaceAll(" ", "");
 
+            // actualModules.add(" " + module.getText().);
+            // actualModules.add(module.getText());
+        }
+        //   Assert.assertEquals(expectedModules, actualModules);
+        Assert.assertEquals(expectModule1, actualModules1);
 
 
     }
-
-
-
-
 
 
 }
